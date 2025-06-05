@@ -5,7 +5,8 @@ import tailwindcss from "@tailwindcss/vite";
 // https://astro.build/config
 export default defineConfig({
   // Configuración para GitHub Pages
-  site: 'https://lorena.athendat.site',
+  site: 'https://TevaDevCU.github.io',
+  base: '/lorena-web',
   output: 'static',
   vite: {
     plugins: [tailwindcss()],
