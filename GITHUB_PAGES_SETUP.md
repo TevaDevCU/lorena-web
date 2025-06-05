@@ -19,7 +19,7 @@
 
 ```bash
 git add .
-git commit -m "feat: agregar configuración para GitHub Pages"
+git commit -m "feat: agregar configuración para GitHub Pages con SEO optimizado"
 git push origin main
 ```
 
@@ -28,6 +28,40 @@ git push origin main
 1. Ve a la pestaña **Actions** en tu repositorio
 2. Verifica que el workflow "Deploy to GitHub Pages" se ejecute correctamente
 3. Una vez completado, tu sitio estará disponible en: `https://[tu-usuario].github.io/lorena-web`
+
+## ✨ Mejoras de SEO Implementadas
+
+### Meta Tags Básicos
+- ✅ **Title optimizado**: Incluye palabras clave relevantes
+- ✅ **Description mejorada**: Más descriptiva y atractiva
+- ✅ **Keywords**: Términos relevantes para autores de fantasía
+- ✅ **Meta robots**: Configurado para indexación
+- ✅ **Canonical URL**: Evita contenido duplicado
+
+### Open Graph (Facebook)
+- ✅ **og:title**: Título optimizado para redes sociales
+- ✅ **og:description**: Descripción atractiva
+- ✅ **og:image**: Imagen de la autora (1200x630px recomendado)
+- ✅ **og:type**: Definido como "website"
+- ✅ **og:url**: URL canónica del sitio
+
+### Twitter Cards
+- ✅ **twitter:card**: "summary_large_image" para mejor visualización
+- ✅ **twitter:title**: Título optimizado
+- ✅ **twitter:description**: Descripción concisa
+- ✅ **twitter:image**: Imagen principal
+- ✅ **twitter:creator**: Handle de Twitter (configurable)
+
+### Datos Estructurados (JSON-LD)
+- ✅ **Schema.org Person**: Información estructurada de la autora
+- ✅ **Job Title**: "Author"
+- ✅ **Knowledge Areas**: Literatura fantástica, ficción juvenil
+- ✅ **Same As**: Enlaces a perfiles (Amazon, etc.)
+
+### Archivos SEO Adicionales
+- ✅ **robots.txt**: Configuración para crawlers
+- ✅ **sitemap.xml**: Mapa del sitio para indexación
+- ✅ **Theme color**: Color principal del sitio
 
 ## Configuración actual
 

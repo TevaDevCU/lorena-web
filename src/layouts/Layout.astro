@@ -3,29 +3,108 @@
 export interface Props {
 	title?: string;
 	description?: string;
+	keywords?: string;
+	ogImage?: string;
+	twImage?: string;
+	ogType?: string;
+	author?: string;
+	twitterCard?: string;
 }
 
 const { 
-	title = "Lorena Magriñat - Author", 
-	description = "Crafting stories that spark imagination and touch the heart. Dive into worlds of adventure and emotion." 
+	title = "Lorena Magriñat - Fantasy Author & Storyteller | Young Adult Fiction", 
+	description = "Award-winning fantasy author Lorena Magriñat crafts captivating young adult fiction that sparks imagination and touches the heart. Discover 'The Last Starlight' and upcoming adventure novels filled with magic, mystery, and unforgettable characters.",
+	keywords = "Lorena Magriñat, fantasy author, young adult fiction, The Last Starlight, adventure novels, magic books, fantasy literature, storytelling, creative writing, author website, book series, fantasy adventure, young adult fantasy, contemporary fiction",
+	ogImage = "https://res.cloudinary.com/athendat/image/upload/v1749165863/lorena/lorena-web-tw_dpgrsr.webp",
+	twImage = "https://res.cloudinary.com/athendat/image/upload/v1749165863/lorena/lorena-web-og_m9986o.webp",
+	ogType = "website",
+	author = "Lorena Magriñat",
+	twitterCard = "summary_large_image"
 } = Astro.props;
+
+// Obtener la URL completa del sitio
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(ogImage, Astro.site);
 ---
 
 <!doctype html>
 <html lang="en" class="scroll-smooth">
 	<head>
+		<!-- Meta tags básicos -->
 		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content={Astro.generator} />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		
-		<!-- Fuentes de Google -->
+		<!-- SEO Meta Tags -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords} />
+		<meta name="author" content={author} />
+		<meta name="robots" content="index, follow" />
+		<meta name="language" content="English" />
+		<meta name="revisit-after" content="7 days" />
+		
+		<!-- Canonical URL -->
+		<link rel="canonical" href={canonicalURL} />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content={ogType} />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImageURL} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Lorena Magriñat - Fantasy Author" />
+		<meta property="og:site_name" content="Lorena Magriñat - Author" />
+		<meta property="og:locale" content="en_US" />
+		
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content={twitterCard} />
+		<meta name="twitter:url" content={canonicalURL} />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={twImage} />
+		<meta name="twitter:image:alt" content="Lorena Magriñat - Fantasy Author" />
+		<meta name="twitter:creator" content="@LorenaAuthor" />
+		<meta name="twitter:site" content="@LorenaAuthor" />
+		
+		<!-- Additional SEO -->
+		<meta name="theme-color" content="#0fcfd8" />
+		<meta name="msapplication-TileColor" content="#0fcfd8" />
+		<meta name="application-name" content="Lorena Magriñat - Author" />
+		
+		<!-- Favicon -->
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg" />
+		
+		<!-- Preconnect for performance -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		
+		<!-- Google Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
 		
-		<title>{title}</title>
+		<!-- JSON-LD Structured Data -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "Person",
+			"name": "Lorena Magriñat",
+			"jobTitle": "Author",
+			"description": "Fantasy author specializing in young adult fiction",
+			"url": "https://TevaDevCU.github.io/lorena-web",
+			"image": "https://TevaDevCU.github.io/lorena-web/images/author-photo.jpg",
+			"sameAs": [
+				"https://amazon.com/author/lorena-magrinat"
+			],
+			"knowsAbout": ["Fantasy Literature", "Young Adult Fiction", "Creative Writing", "Storytelling"],
+			"worksFor": {
+				"@type": "Organization",
+				"name": "Independent Author"
+			}
+		}
+		</script>
 	</head>
 	<body class="bg-gray-50 text-primary antialiased">
 		<slot />
