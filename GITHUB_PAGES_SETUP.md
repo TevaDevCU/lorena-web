@@ -34,6 +34,13 @@ git push origin main
 - **Branch de despliegue**: `main`
 - **Action**: `.github/workflows/deploy.yml`
 - **Trigger**: Automático en push a `main` + manual desde Actions tab
+- **Archivo .nojekyll**: Se crea automáticamente para que GitHub Pages no ignore el directorio `_astro`
+
+## ¿Por qué necesitamos .nojekyll?
+
+GitHub Pages usa Jekyll por defecto, que ignora directorios que empiezan con `_` (como `_astro`). 
+El archivo `.nojekyll` le dice a GitHub Pages que no use Jekyll y sirva todos los archivos tal como están, 
+incluyendo los archivos JavaScript y CSS compilados de Astro que están en el directorio `_astro`.
 
 ## Notas importantes
 
