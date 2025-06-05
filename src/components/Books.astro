@@ -1,0 +1,118 @@
+---
+// Sección de libros
+import Section from './ui/Section.astro';
+import Card from './ui/Card.astro';
+import Button from './ui/Button.astro';
+import type { Book } from '../types';
+
+// Datos de los libros
+const books: Book[] = [
+  {
+    id: 'last-starlight',
+    title: 'The Last Starlight',
+    description: 'In a world where stars are fading, a young cartographer discovers a hidden map that could lead to the last source of light. A thrilling adventure about hope, courage, and the magic hidden in plain sight. Perfect for young adults who love fantasy and a touch of mystery.',
+    coverImage: 'images/book_front.jpg',
+    publishDate: 'January 2024',
+    amazonLink: 'https://a.co/d/bGup72D'
+  },
+  {
+    id: 'book-two',
+    title: 'Coming Soon: Book Two!',
+    description: "I'm currently deep in the creative process, weaving together a new tale that I hope you'll love. Expect more adventure, intriguing characters, and a story that will keep you guessing.",
+    coverImage: 'https://placehold.co/400x250/Eeefe4/333D45?text=Book+2+Teaser',
+    publishDate: 'Coming Soon',
+    isComingSoon: true
+  }
+];
+---
+
+<Section id="books" background="turquoise">
+  <h2 class="text-3xl sm:text-4xl font-bold text-primary text-center mb-12">
+    My Books
+  </h2>
+  
+  <div class="space-y-16">
+    {books.map(book => (
+      <Card 
+        variant="hover-lift" 
+        class={book.isComingSoon ? 'bg-yellow-burnt-light bg-opacity-40' : ''}
+      >
+        {book.isComingSoon ? (
+          <!-- Libro próximamente -->
+          <div class="text-center">
+            <h3 class="text-2xl sm:text-3xl font-bold text-primary mb-4">
+              {book.title}
+            </h3>
+            <img 
+              src={book.coverImage} 
+              alt={`Imagen teaser para el segundo libro de Lorena Magriñat`}
+              class="rounded-lg shadow-md mx-auto mb-6 w-full max-w-md"
+            >
+            <p class="text-lg text-secondary mb-6 max-w-xl mx-auto">
+              {book.description}
+            </p>
+            <Button href="#newsletter" variant="primary">
+              Be the First to Know!
+            </Button>
+          </div>
+        ) : (
+          <!-- Libro publicado -->
+          <div class="grid md:grid-cols-3 gap-8 items-center">
+            <div class="md:col-span-1">
+              <img 
+                src={book.coverImage} 
+                alt={`Portada del libro ${book.title}`}
+                class="rounded-lg shadow-lg mx-auto w-full max-w-xs"
+              >
+            </div>
+            <div class="md:col-span-2 text-center md:text-left">
+              <h3 class="text-2xl sm:text-3xl font-bold text-primary mb-3">
+                {book.title}
+              </h3>
+              <p class="text-sm text-gray-500 mb-4">
+                Published: {book.publishDate}
+              </p>
+              <p class="text-lg text-secondary mb-6">
+                {book.description}
+              </p>
+              <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                {book.amazonLink && (
+                  <Button href={book.amazonLink} target="_blank" variant="primary">
+                    Buy on Amazon
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline ml-2" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </Button>
+                )}
+                <Button id="stripe-buy-button" variant="outline">
+                  Buy Directly (Stripe)
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                  </svg>
+                </Button>
+              </div>
+              <p id="stripe-message" class="text-sm text-gray-600 mt-2 hidden">
+                Stripe checkout coming soon! For now, please use Amazon.
+              </p>
+            </div>
+          </div>
+        )}
+      </Card>
+    ))}
+  </div>
+</Section>
+
+<script>
+  // Manejo del botón de Stripe
+  document.addEventListener('DOMContentLoaded', function() {
+    const stripeButton = document.getElementById('stripe-buy-button');
+    const stripeMessage = document.getElementById('stripe-message');
+    
+    if (stripeButton && stripeMessage) {
+      stripeButton.addEventListener('click', () => {
+        stripeMessage.classList.remove('hidden');
+        console.log("Botón de Stripe clickeado. Se necesita integración real.");
+      });
+    }
+  });
+</script>

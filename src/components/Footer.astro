@@ -1,0 +1,66 @@
+---
+// Footer del sitio
+import type { NavItem } from '../types';
+
+const footerNavItems: NavItem[] = [
+  { href: '#home', label: 'Home' },
+  { href: '#about', label: 'About' },
+  { href: '#books', label: 'Books' },
+  { href: '#news', label: 'News' },
+  { href: '#contact', label: 'Contact' },
+  { href: '#privacy', label: 'Privacy Policy' }
+];
+---
+
+<footer class="text-primary bg-white py-12">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <!-- Navegación del footer -->
+    <nav class="flex flex-wrap justify-center -mx-5 -my-2 mb-6">
+      {footerNavItems.map(item => (
+        <div class="px-5 py-2">
+          <a href={item.href} class="text-sm hover:text-yellow-burnt-light transition-colors">
+            {item.label}
+          </a>
+        </div>
+      ))}
+    </nav>
+    
+    <!-- Copyright -->
+    <p class="text-sm">
+      &copy; <span id="current-year"></span> Lorena Magriñat. All Rights Reserved.
+    </p>
+    
+    <!-- Mensaje adicional -->
+    <p class="text-xs mt-1">
+      Designed with <span class="text-red-400">&hearts;</span> and a touch of pastel.
+    </p>
+  </div>
+</footer>
+
+<!-- Sección de Privacy Policy (oculta por defecto) -->
+<section id="privacy" class="py-16 bg-gray-100 hidden">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-bold text-primary text-center mb-8">
+      Privacy Policy
+    </h2>
+    <div class="prose prose-lg max-w-3xl mx-auto text-secondary">
+      <p>
+        Your privacy is important to us. This privacy statement explains the personal data Lorena Magriñat processes, how Lorena Magriñat processes it, and for what purposes.
+      </p>
+      <p>
+        We collect data to operate effectively and provide you the best experiences with our services. You provide some of this data directly, such as when you subscribe to a newsletter, contact us for support, or register for an event.
+      </p>
+      <p>Last updated: May 2025</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Establecer el año actual en el footer
+  document.addEventListener('DOMContentLoaded', function() {
+    const currentYearElement = document.getElementById('current-year');
+    if (currentYearElement) {
+      currentYearElement.textContent = new Date().getFullYear().toString();
+    }
+  });
+</script>

@@ -1,0 +1,53 @@
+---
+// Componente reutilizable para botones
+export interface Props {
+  variant?: "primary" | "outline";
+  size?: "small" | "medium" | "large";
+  href?: string;
+  target?: string;
+  class?: string;
+  type?: "button" | "submit" | "reset";
+  id?: string;
+}
+
+const {
+  variant = "primary",
+  size = "medium",
+  href,
+  target,
+  class: className = "",
+  type = "button",
+  id,
+  ...rest
+} = Astro.props;
+
+// Clases base para diferentes variantes
+const baseClasses = "hover:underline transition-all duration-300 underline-offset-4";
+
+const variantClasses = {
+  primary: "",
+  outline:
+    "",
+};
+
+const sizeClasses = {
+  small: "px-4 py-2 text-sm",
+  medium: "px-8 py-3 text-base",
+  large: "px-10 py-4 text-lg",
+};
+
+const buttonClasses = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
+
+const Tag = href ? "a" : "button";
+---
+
+<Tag
+  class={buttonClasses}
+  href={href}
+  target={target}
+  type={href ? undefined : type}
+  id={id}
+  {...rest}
+>
+  <slot />
+</Tag>

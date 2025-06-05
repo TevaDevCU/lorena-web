@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Open Sans", "Inter", "Roboto", "Helvetica Neue", Arial, sans-serif;
+  --font-lora: "Lora", serif;
+
+  /* Colores base */
+  --color-turquoise-light: #0fcfd8; /* Azul turquesa pastel */
+  --color-yellow-burnt-light: #e8d40c; /* Amarillo quemado pastel */
+  --color-primary: #333d45; /* Un gris oscuro para texto principal */
+  --color-secondary: #5e6a73;
+  --color-accent: #eeefe4; /* Un turquesa más acentuado */
+}
+
+/* Tipografía global */
+body {
+  font-family: var(--font-display);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-lora);
+  font-weight: 500; /* Un grosor no muy pesado */
+}
+
+/* Clases utilitarias para colores personalizados */
+.bg-turquoise-light { 
+  background-color: var(--color-turquoise-light); 
+}
+
+.text-turquoise-light { 
+  color: var(--color-turquoise-light); 
+}
+
+.border-turquoise-light { 
+  border-color: var(--color-turquoise-light); 
+}
+
+.bg-yellow-burnt-light { 
+  background-color: var(--color-yellow-burnt-light); 
+}
+
+.text-yellow-burnt-light { 
+  color: var(--color-yellow-burnt-light); 
+}
+
+.text-primary { 
+  color: var(--color-text-primary); 
+}
+
+.text-secondary { 
+  color: var(--color-text-secondary); 
+}
+
+.bg-accent { 
+  background-color: var(--color-accent); 
+}
+
+.text-accent { 
+  color: var(--color-accent); 
+}
+
+.border-accent { 
+  border-color: var(--color-accent); 
+}
+
+/* Utilidades adicionales */
+.font-lora {
+  font-family: var(--font-lora);
+}
+
+/* Animación sutil para elementos al hacer hover */
+.hover-lift {
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+

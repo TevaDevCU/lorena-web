@@ -1,0 +1,125 @@
+---
+// Header principal con navegación
+import type { NavItem } from '../types';
+
+const navItems: NavItem[] = [
+  { href: '#home', label: 'Home' },
+  { href: '#about', label: 'About' },
+  { href: '#books', label: 'Books' },
+  { href: '#news', label: 'News' },
+  { href: '#contact', label: 'Contact' }
+];
+---
+
+<header id="main-header" class="fixed top-0 left-0 right-0 z-50">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo/Brand -->
+      <div class="flex-shrink-0">
+        <a href="#home" class="text-2xl font-bold text-primary font-lora">
+          Lorena Magriñat
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:block">
+        <nav class="flex items-center space-x-4">
+          {navItems.map(item => (
+            <a href={item.href} class="px-3 py-2 text-sm font-medium text-primary hover:text-accent transition-colors">
+              {item.label}
+            </a>
+          ))}
+        </nav>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button 
+          id="mobile-menu-button" 
+          type="button" 
+          class="inline-flex items-center justify-center p-2 rounded-md text-primary hover:text-accent hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent" 
+          aria-controls="mobile-menu" 
+          aria-expanded="false"
+        >
+          <span class="sr-only">Abrir menú principal</span>
+          <!-- Icono menu abierto -->
+          <svg id="icon-open" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <!-- Icono menu cerrado -->
+          <svg id="icon-close" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="md:hidden hidden" id="mobile-menu">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg rounded-b-md">
+      {navItems.map(item => (
+        <a href={item.href} class="block px-3 py-2 text-base font-medium text-primary hover:text-accent hover:bg-gray-50 transition-colors">
+          {item.label}
+        </a>
+      ))}
+    </div>
+  </div>
+</header>
+
+<style>
+  /* Estilos específicos del header */
+  #main-header {
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  #main-header.scrolled {
+    background-color: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+</style>
+
+<script>
+  // Script para manejar el header y menu móvil
+  document.addEventListener('DOMContentLoaded', function() {
+    const header = document.getElementById('main-header');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('icon-open');
+    const iconClose = document.getElementById('icon-close');
+
+    // Efecto scroll del header
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header?.classList.add('scrolled');
+      } else {
+        header?.classList.remove('scrolled');
+      }
+    });
+
+    // Toggle del menú móvil
+    mobileMenuButton?.addEventListener('click', () => {
+      const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
+      mobileMenuButton.setAttribute('aria-expanded', (!isExpanded).toString());
+      mobileMenu?.classList.toggle('hidden');
+      iconOpen?.classList.toggle('hidden');
+      iconOpen?.classList.toggle('block');
+      iconClose?.classList.toggle('hidden');
+      iconClose?.classList.toggle('block');
+    });
+
+    // Cerrar menú móvil al hacer click en un enlace
+    const mobileNavLinks = mobileMenu?.querySelectorAll('a');
+    mobileNavLinks?.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenuButton?.setAttribute('aria-expanded', 'false');
+        mobileMenu?.classList.add('hidden');
+        iconOpen?.classList.remove('hidden');
+        iconOpen?.classList.add('block');
+        iconClose?.classList.add('hidden');
+        iconClose?.classList.remove('block');
+      });
+    });
+  });
+</script>

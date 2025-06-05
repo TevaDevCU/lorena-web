@@ -1,0 +1,75 @@
+---
+// Sección de newsletter
+import Section from './ui/Section.astro';
+import Button from './ui/Button.astro';
+---
+
+<Section id="news" background="white">
+  <div class="text-center">
+    <div id="newsletter">
+      <h2 class="text-3xl sm:text-4xl font-bold text-primary mb-6">
+        Stay Connected
+      </h2>
+      
+      <p class="text-lg text-secondary max-w-xl mx-auto mb-8">
+        Want to receive updates on my writing journey, news about my upcoming book, exclusive content, and maybe a sneak peek or two? Subscribe to my newsletter!
+      </p>
+      
+      <form id="newsletter-form" class="max-w-lg mx-auto">
+        <div class="flex flex-col sm:flex-row gap-4">
+          <input 
+            type="email" 
+            id="email-input" 
+            name="email" 
+            placeholder="Enter your email address" 
+            required 
+            class="flex-grow px-4 py-3 rounded-lg border-2 border-gray-300 focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all"
+          >
+          <Button type="submit" variant="primary">
+            Subscribe Now
+          </Button>
+        </div>
+        <p id="newsletter-message" class="mt-4 text-sm"></p>
+      </form>
+    </div>
+    
+    <!-- Sección de blog comentada - se puede habilitar después -->
+    <!-- 
+    <div class="mt-16">
+      <h3 class="text-2xl font-bold text-primary mb-8">Latest Musings</h3>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md hover-lift">
+          <img src="https://placehold.co/400x250/A0D2DB/FFFFFF?text=Blog+Image" alt="Blog post image" class="rounded-md mb-4">
+          <h4 class="text-xl font-semibold text-primary mb-2">My Writing Process</h4>
+          <p class="text-sm text-gray-500 mb-3">April 15, 2025</p>
+          <p class="text-secondary mb-4">A little peek into how I bring my stories to life...</p>
+          <a href="#" class="font-semibold text-accent hover:underline">Read More &rarr;</a>
+        </div>
+      </div>
+    </div>
+    -->
+  </div>
+</Section>
+
+<script>
+  // Manejo del formulario de newsletter
+  document.addEventListener('DOMContentLoaded', function() {
+    const newsletterForm = document.getElementById('newsletter-form');
+    const newsletterMessage = document.getElementById('newsletter-message');
+    
+    if (newsletterForm && newsletterMessage) {
+      newsletterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Aquí iría la lógica real de suscripción
+        newsletterMessage.textContent = '¡Gracias por suscribirte! Te mantendremos informado.';
+        newsletterMessage.className = 'mt-4 text-sm text-green-600';
+        
+        // Limpiar el mensaje después de 5 segundos
+        setTimeout(() => { 
+          newsletterMessage.textContent = ''; 
+        }, 5000);
+      });
+    }
+  });
+</script>

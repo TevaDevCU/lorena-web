@@ -1,0 +1,35 @@
+---
+// Sección hero principal
+import Button from './ui/Button.astro';
+---
+
+<section id="home" class="pt-20 min-h-screen flex items-center bg-yellow-burnt-light">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <!-- Imagen de perfil -->
+    <img 
+      src="images/author-photo.jpg" 
+      alt="Lorena Magriñat - Retrato de autora" 
+      class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-8 shadow-xl border-4 border-white"
+    >
+    
+    <!-- Título principal -->
+    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-6">
+      Welcome! I'm Lorena Magriñat.
+    </h1>
+    
+    <!-- Descripción -->
+    <p class="text-lg sm:text-xl text-secondary max-w-2xl mx-auto mb-10">
+      Crafting stories that spark imagination and touch the heart. Dive into worlds of adventure and emotion.
+    </p>
+    
+    <!-- Botones de acción -->
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <Button href="#books" variant="primary">
+        Discover My Books
+      </Button>
+      <Button href="#newsletter" variant="outline">
+        Get Updates
+      </Button>
+    </div>
+  </div>
+</section>

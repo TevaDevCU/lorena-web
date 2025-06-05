@@ -1,22 +1,53 @@
+---
+// Layout principal del sitio
+export interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { 
+	title = "Lorena Magriñat - Author", 
+	description = "Crafting stories that spark imagination and touch the heart. Dive into worlds of adventure and emotion." 
+} = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		
+		<!-- Fuentes de Google -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+		
+		<title>{title}</title>
 	</head>
-	<body>
+	<body class="bg-gray-50 text-primary antialiased">
 		<slot />
+		
+		<!-- Script global para smooth scroll -->
+		<script>
+			// Smooth scroll para enlaces anchor
+			document.addEventListener('DOMContentLoaded', function() {
+				document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+					anchor.addEventListener('click', function (e) {
+						e.preventDefault();
+						const href = (e.target as HTMLAnchorElement).getAttribute('href');
+						const target = href ? document.querySelector(href) : null;
+						if (target) {
+							target.scrollIntoView({
+								behavior: 'smooth',
+								block: 'start'
+							});
+						}
+					});
+				});
+			});
+		</script>
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

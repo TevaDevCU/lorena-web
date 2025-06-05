@@ -1,0 +1,35 @@
+---
+// Componente reutilizable para tarjetas
+export interface Props {
+  variant?: 'default' | 'hover-lift' | 'gradient';
+  padding?: 'small' | 'medium' | 'large';
+  class?: string;
+}
+
+const { 
+  variant = 'default', 
+  padding = 'medium', 
+  class: className = '',
+  ...rest 
+} = Astro.props;
+
+const baseClasses = 'bg-white rounded-xl shadow-xl';
+
+const variantClasses = {
+  default: '',
+  'hover-lift': 'hover-lift',
+  gradient: 'bg-gradient-to-br from-white to-gray-50'
+};
+
+const paddingClasses = {
+  small: 'p-4',
+  medium: 'p-6 md:p-8',
+  large: 'p-8 md:p-12'
+};
+
+const cardClasses = `${baseClasses} ${variantClasses[variant]} ${paddingClasses[padding]} ${className}`;
+---
+
+<div class={cardClasses} {...rest}>
+  <slot />
+</div>

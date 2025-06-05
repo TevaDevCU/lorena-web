@@ -1,0 +1,47 @@
+---
+// Sección About
+import Section from './ui/Section.astro';
+---
+
+<Section id="about" background="white">
+  <div class="grid md:grid-cols-2 gap-12 items-center">
+    <!-- Imagen -->
+    <div class="flex justify-center md:justify-start">
+      <img 
+        src="images/author-thinking.jpg" 
+        alt="Lorena Magriñat trabajando en su nuevo libro" 
+        class="rounded-lg shadow-xl w-64 md:w-80 hover-lift object-cover"
+      >
+    </div>
+    
+    <!-- Contenido de texto -->
+    <div class="text-center md:text-left">
+      <h2 class="text-3xl sm:text-4xl font-bold text-primary mb-6">
+        A Little About Me
+      </h2>
+      
+      <p class="text-lg text-secondary mb-4">
+        Ever since I could remember, words have been my playground and my escape. I believe in the power of stories to connect us, to make us dream, and to help us understand the world a little better.
+      </p>
+      
+      <p class="text-lg text-secondary mb-4">
+        My debut novel, <strong class="text-primary">"The Last Starlight"</strong>, is a journey I poured my heart into, and I'm thrilled to share it with you. Currently, I'm lost in the world of my second book, an adventure I can't wait for you to experience!
+      </p>
+      
+      <p class="text-lg text-secondary">
+        When I'm not writing, you can find me with a cup of tea, exploring hidden corners of the city, or getting lost in a good book (someone else's, for a change!).
+      </p>
+    </div>
+  </div>
+</Section>
+
+<style>
+  .hover-lift {
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+</style>

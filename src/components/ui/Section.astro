@@ -1,0 +1,39 @@
+---
+// Componente wrapper para secciones
+export interface Props {
+  id?: string;
+  background?: 'white' | 'gray' | 'turquoise' | 'yellow' | 'accent';
+  padding?: 'small' | 'medium' | 'large';
+  class?: string;
+}
+
+const { 
+  id,
+  background = 'white', 
+  padding = 'medium', 
+  class: className = '',
+  ...rest 
+} = Astro.props;
+
+const backgroundClasses = {
+  white: 'bg-white',
+  gray: 'bg-gray-50',
+  turquoise: 'bg-turquoise-light bg-opacity-20',
+  yellow: 'bg-yellow-burnt-light bg-opacity-40',
+  accent: 'bg-accent'
+};
+
+const paddingClasses = {
+  small: 'py-8 sm:py-12',
+  medium: 'py-16 sm:py-24',
+  large: 'py-20 sm:py-32'
+};
+
+const sectionClasses = `${backgroundClasses[background]} ${paddingClasses[padding]} ${className}`;
+---
+
+<section id={id} class={sectionClasses} {...rest}>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <slot />
+  </div>
+</section>
